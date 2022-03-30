@@ -1,0 +1,49 @@
+@model Leilao
+
+@{
+    IEnumerable<Categoria> categorias = (IEnumerable<Categoria>)ViewData["Categorias"];
+    ViewData["Title"] = $"Leilão - {ViewData["Operacao"]}";
+    string operacao = ViewData["Operacao"].ToString();
+    bool edicao = operacao == "Edição";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h4>@ViewData["Title"]</h4>
+    </div>
+    <form class="card-body form-row needs-validation" role="form" asp-controller="Leilao">
+        @if (edicao)
+        {
+            <input type="hidden" asp-for="Id" />
+        }
+        <div class="form-group col-8">
+            <label asp-for="Titulo"></label>
+            <input class="form-control" asp-for="Titulo" />
+            <span class="invalid-feedback" asp-validation-for="Titulo"></span>
+        </div>
+        <div class="form-group col-4">
+            <label asp-for="IdCategoria">Categoria:</label>
+            <select class="form-control" asp-for="IdCategoria">
+                @foreach(var categoria in categorias.OrderBy(c => c.Descricao))
+                {
+                    <option value="@categoria.Id">@categoria.Descricao</option>
+                }
+            </select>
+        </div>
+        <div class="form-group col-12">
+            <label asp-for="Descricao"></label>
+            <textarea class="form-control" asp-for="Descricao" rows="8"></textarea>
+        </div>
+        <div class="mt-3 text-right bg-secondary">
+            <button type="submit" class="btn btn-primary">
+                <i class="fa fa-save" aria-hidden="true"></i>
+                Gravar
+            </button>
+            <a class="btn btn-outline-secondary" asp-controller="Leilao" asp-action="Index">Voltar</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

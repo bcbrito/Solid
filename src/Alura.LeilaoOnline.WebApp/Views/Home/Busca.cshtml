@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Leilao>
+
+@{
+    Layout = "_AreaPublica";
+    ViewData["Title"] = "Busca";
+}
+
+<h1>Você pesquisou por "@ViewData["termo"]"</h1>
+<h3>Leilões encontrados</h3>
+<section class="tiles">
+    @foreach (var leilao in Model)
+    {
+        <article class="leilao">
+            <span class="image">
+                <img src="@leilao.PosterUrl" alt="@leilao.Titulo" />
+            </span>
+            <h4>@leilao.Titulo</h4>
+            <div class="content">
+                <p>@leilao.Descricao.Substring(0, 100)</p>
+            </div>
+        </article>
+    }
+</section>

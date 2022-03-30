@@ -1,0 +1,26 @@
+﻿@model Categoria
+
+@{
+    Layout = "_AreaPublica";
+    ViewData["Title"] = "Categoria";
+}
+
+<h1>@Model.Descricao</h1>
+<span class="image main img-categoria">
+    <img src="~/@Model.Imagem" alt="@Model.Descricao" />
+</span>
+<h3>Leilões em andamento</h3>
+<section class="tiles">
+@foreach (var leilao in Model.Leiloes.Where(l => l.Situacao == SituacaoLeilao.Pregao))
+{
+    <article class="leilao">
+        <span class="image">
+            <img src="@leilao.PosterUrl" alt="@leilao.Titulo" />
+        </span>
+        <h4>@leilao.Titulo</h4>
+        <div class="content">
+            <p>@leilao.Descricao.Substring(0,100)</p>
+        </div>
+    </article>
+}
+</section>

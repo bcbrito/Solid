@@ -1,0 +1,109 @@
+﻿<!DOCTYPE HTML>
+<!--
+    Phantom by HTML5 UP
+    html5up.net
+    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+    <title>Auksjon - Leilão de Ofertas</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="~/assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="~/assets/css/noscript.css" /></noscript>
+</head>
+<body class="is-preload">
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <div class="inner">
+
+                <!-- Logo -->
+                <a asp-action="Index" class="logo">
+                    <span class="symbol"><img src="~/images/logo.svg" alt="" /></span><span class="title">Auksjon</span>
+                </a>
+
+                <!-- Nav -->
+                <nav>
+                    <ul>
+                        <li><a href="#menu">Menu</a></li>
+                    </ul>
+                </nav>
+
+            </div>
+        </header>
+
+        <!-- Menu -->
+        <nav id="menu">
+            <h2>Menu</h2>
+            <ul>
+                <li><a asp-action="Index">Home</a></li>
+                <li><a asp-action="Login">Login</a></li>
+                <li>
+                    <form asp-action="Busca">
+                        <input type="text" name="termo" placeholder="Pesquise um leilão..." autocomplete="off" required />
+                    </form>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main -->
+        <div id="main">
+            <div class="inner">
+                @RenderBody()
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <div class="inner">
+                <section>
+                    <h2>Contato</h2>
+                    <form method="post" action="#">
+                        <div class="fields">
+                            <div class="field half">
+                                <input type="text" name="name" id="name" placeholder="Nome" />
+                            </div>
+                            <div class="field half">
+                                <input type="email" name="email" id="email" placeholder="Email" />
+                            </div>
+                            <div class="field">
+                                <textarea name="message" id="message" placeholder="Mensagem"></textarea>
+                            </div>
+                        </div>
+                        <ul class="actions">
+                            <li><input type="submit" value="Enviar" class="primary" /></li>
+                        </ul>
+                    </form>
+                </section>
+                <section>
+                    <h2>Redes Sociais</h2>
+                    <ul class="icons">
+                        <li><a href="#" class="icon brands style2 fa-facebook-f"><span class="label">Facebook</span></a></li>
+                        <li><a href="#" class="icon brands style2 fa-instagram"><span class="label">Instagram</span></a></li>
+                        <li><a href="#" class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
+                        <li><a href="#" class="icon solid style2 fa-phone"><span class="label">Phone</span></a></li>
+                        <li><a href="#" class="icon solid style2 fa-envelope"><span class="label">Email</span></a></li>
+                    </ul>
+                </section>
+                <ul class="copyright">
+                    <li>&copy; 2020 Auksjon. Leilão online de ofertas</li>
+                    <li>Template: <a target="_blank" href="http://html5up.net/phantom">Phantom - HTML5UP</a></li>
+                    <li>Imagens: <a target="_blank" href="http://picsum.photos">Picsum</a> e <a target="_blank" href="http://unsplash.com">Unsplash</a> </li>
+                </ul>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+</html>

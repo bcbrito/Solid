@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Alura.LeilaoOnline.CLI": {
+      "commandName": "Project",
+      "commandLineArgs": "listar"
+    }
+  }
+}

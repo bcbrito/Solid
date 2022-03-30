@@ -1,0 +1,28 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "font-awesome@5.11.2",
+      "destination": "wwwroot/lib/font-awesome/dist"
+    },
+    {
+      "library": "twitter-bootstrap@4.3.1",
+      "destination": "wwwroot/lib/bootstrap/dist",
+      "files": [ "css/bootstrap-grid.css", "css/bootstrap-reboot.css", "css/bootstrap.css", "js/bootstrap.min.js" ]
+    },
+    {
+      "library": "jquery@3.3.1",
+      "destination": "wwwroot/lib/jquery/dist",
+      "files": [ "jquery.js" ]
+    },
+    {
+      "library": "jquery-validate@1.17.0",
+      "destination": "wwwroot/lib/jquery-validation/dist"
+    },
+    {
+      "library": "jquery-validation-unobtrusive@3.2.11",
+      "destination": "wwwroot/lib/jquery-validation-unobtrusive/dist"
+    }
+  ]
+}

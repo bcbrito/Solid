@@ -1,0 +1,99 @@
+@model IEnumerable<Leilao>
+
+@{
+    ViewData["Title"] = "Leilões";
+    var termo = ViewData["termo"];
+}
+
+<div class="card">
+    <div class="card-header d-flex">
+        <h4 class="flex-grow-1">Leilões</h4>
+        <a class="btn btn-outline-primary" asp-controller="Leilao" asp-action="Insert" title="Inclusão">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            Novo
+        </a>
+    </div>
+    <div class="card-body">
+        <form class="form-inline mb-3" asp-controller="Leilao" asp-action="Pesquisa" method="get">
+            <input name="termo" class="form-control flex-grow-1"
+                    value="@termo"
+                    placeholder="Pesquisar por título, categoria ou descrição..." />
+            <button class="btn btn-outline-secondary ml-2">
+                <i class="fa fa-search"></i>
+                <span class="d-none d-md-inline">Pesquisar</span>
+            </button>
+        </form>
+        <div class="row">
+            <div class="col-12">
+                <table class="col-12 table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Título</th>
+                            <th>Situação</th>
+                            <th>Descrição</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach(var leilao in Model)
+                        {
+                            <tr class="row-leilao-@leilao.Id">
+                                <td>@leilao.Id</td>
+                                <td>@leilao.Titulo</td>
+                                <td>
+                                    @switch (leilao.Situacao)
+                                    {
+                                        case SituacaoLeilao.Rascunho:
+                                            <span>Rascunho</span>
+                                            break;
+                                        case SituacaoLeilao.Pregao:
+                                            <span>Pregão iniciado em @leilao.Inicio.Value.ToString("dd/MM/yyyy hh:mm")</span>
+                                            break;
+                                        case SituacaoLeilao.Finalizado:
+                                            <span>Finalizado em @leilao.Termino.Value.ToString("dd/MM/yyyy hh:mm")</span>
+                                            break;
+                                        default:
+                                            <span>@leilao.Situacao</span>
+                                            break;
+                                    }
+                                </td>
+                                <td>@leilao.Descricao</td>
+                                <td>
+                                    @if (leilao.Situacao == SituacaoLeilao.Rascunho)
+                                    {
+                                        <a class="btn btn-light" asp-controller="Leilao" asp-action="Edit" asp-route-id="@leilao.Id" title="Edição">
+                                            <i class="fa fa-pencil-alt" aria-hidden="true"></i>
+                                        </a>
+                                        <form asp-action="Inicia">
+                                            <input type="hidden" name="id" value="@leilao.Id" />
+                                            <button class="btn btn-light" title="Iniciar Pregão">
+                                                <i class="fas fa-play-circle"></i>
+                                            </button>
+                                        </form>
+                                    }
+                                    @if (leilao.Situacao != SituacaoLeilao.Pregao)
+                                    {
+                                        <a class="btn btn-light btnRemoveLeilao" data-id="@leilao.Id" data-titulo="@leilao.Titulo" title="Exclusão">
+                                            <i class="fa fa-trash" aria-hidden="true"></i>
+                                        </a>
+                                    }
+                                    @if (leilao.Situacao == SituacaoLeilao.Pregao)
+                                    {
+                                        <form asp-action="Finaliza">
+                                            <input type="hidden" name="id" value="@leilao.Id" />
+                                            <button class="btn btn-light" title="Finalizar Pregão">
+                                                <i class="fas fa-stop-circle"></i>
+                                            </button>
+                                        </form>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
